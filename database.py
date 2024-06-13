@@ -7,8 +7,7 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-# Retrieve the secret key from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = F'postgresql://{os.getenv("DATABASE_USER")}:{os.getenv("DATABASE_PASSWORD")}@localhost:5432/{os.getenv("DATABASE")}'
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
